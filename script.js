@@ -47,7 +47,7 @@ function processFileContent(content) {
 function wrapLines(lines) {
     let yValue = 1;
     const wrappedLines = lines.map(line => {
-        const wrappedLine = `addText('${line}', { x: 2, y: ${yValue}, color: color\`0\`})`;
+        const wrappedLine = `addText(`${line}`, { x: 2, y: ${yValue}, color: color\`0\`})`;
         yValue = (yValue % 14) + 1;
         return wrappedLine;
     });
