@@ -1,10 +1,11 @@
-document.getElementById('downloadButton').addEventListener('click', download)
-document.getElementById('copyButton').addEventListener('click', copyToClipboard)
-let finalContent = "weh"
+document.getElementById('downloadButton').addEventListener('click', download);
+document.getElementById('copyButton').addEventListener('click', copyToClipboard);
+let finalContent = "weh";
 
 function download() {
     saveToFile(finalContent);
 }
+
 function copyToClipboard() {
     navigator.clipboard.writeText(finalContent).then(() => {
         console.log("Text copied to clipboard");
@@ -18,7 +19,9 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     const reader = new FileReader();
 
     reader.onload = function(event) {
-        const fileContent = event.target.result;
+        let fileContent = event.target.result;
+        // Remove form feed and replace special single quotes with regular ones
+        fileContent = fileContent.replace(/\f/g, '').replace(/’/g, "'");
         processFileContent(fileContent);
     };
 
@@ -47,7 +50,7 @@ function processFileContent(content) {
 function wrapLines(lines) {
     let yValue = 1;
     const wrappedLines = lines.map(line => {
-        const wrappedLine = 'addText(`' + line + '`, { x: 2, y: ' + yValue + ', color: color\`0\`})';
+        const wrappedLine = `\taddText('${line}', { x: 2, y: ${yValue}, color: color\`0\`})`;
         yValue = (yValue % 14) + 1;
         return wrappedLine;
     });
@@ -59,7 +62,7 @@ function insertClrScrnCode(array) {
     for (let i = 0; i < array.length; i++) {
         outputArray.push(array[i]);
         if ((i + 1) % 14 === 0) {
-            outputArray.push("keyPressed = await waitForKeypress();", "clearText()");
+            outputArray.push("\tkeyPressed = await waitForKeypress();", "\tclearText()");
         }
     }
     addTemplate(outputArray);
@@ -113,9 +116,9 @@ async function main() {
 main()`;
 
     finalContent = [templateStart, ...outputArray, templateEnd].join("\n");
-    document.getElementById('copyButton').style = "display: block;"
-    document.getElementById('downloadButton').style = "display: block;"
-    document.getElementById('le-box').style = "align-self: center; border: 2px solid black; margin-left: auto; margin-right: auto; border-radius: 20px; width: 300px; height: 125px;"
+    document.getElementById('copyButton').style = "display: block;";
+    document.getElementById('downloadButton').style = "display: block;";
+    document.getElementById('le-box').style = "align-self: center; border: 2px solid black; margin-left: auto; margin-right: auto; border-radius: 20px; width: 300px; height: 125px;";
 }
 
 function saveToFile(finalContent) {
