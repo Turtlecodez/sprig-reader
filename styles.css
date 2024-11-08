@@ -1,0 +1,58 @@
+body {
+    background-color: #323232;
+}
+
+h1 {
+    font-family: Helvetica, sans-serif;
+}
+
+#heading {
+    text-align: center;
+    color: #DCDCDC;
+    padding-top: 50px;
+    font-size: 80px;
+    font-family: Helvetica, sans-serif;
+}
+
+.center {
+    text-align: center;
+}
+
+#le-box {
+    align-self: center;
+    border: 2px solid #DDDDDD;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    width: 300px;
+    height: 100px;
+}
+
+#some-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #DDDDDD;
+    font-family: Helvetica, sans-serif;
+    padding-left: 35%;
+    transform: translateY(-10px);
+}
+
+#line {
+    transform: translateY(-20px);
+    border: solid 1px #DDDDDD;
+}
+
+#fileInput {
+    padding-left: 60px;
+    transform: translateY(-10px);
+    color: #DDDDDD;
+    font-family: Helvetica, sans-serif;
+}
+
+#copyButton {
+    transform: translate(80px, 0px);
+}
+
+#downloadButton {
+    transform: translate(150px, -21px);
+}
